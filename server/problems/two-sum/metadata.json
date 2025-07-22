@@ -1,0 +1,7 @@
+{
+  "title": "Two Sum",
+  "difficulty": "Easy",
+  "tags": ["array", "hashmap"],
+  "timeLimit": "1s",
+  "memoryLimit": "256MB"
+}
