@@ -1,5 +1,5 @@
-import runCode from '../../judge/runCode.js'
 
+import axios from 'axios'
 
 export const runUserCode = async (req, res)=>{
   const {language="cpp",code,input} = req.body;
@@ -7,16 +7,10 @@ export const runUserCode = async (req, res)=>{
   if(!code){
     return res.status(400).json({success:false,error:"Empty code body"});
   }
-  try {
-    const result = await runCode({language,code,input});
+  const compilerUrl = process.env.compilerUrl;
+    const {data} = await axios.post(compilerUrl+'/compiler/run',{language,code,input});
+    
     res.json({
-      success:true,
-      ...result
-    })
-  } catch (error) {
-    res.status(500).json({
-      success:false,
-      error:error.stderr || error.message || JSON.stringify(error)
-    })
-  }
+      ...data
+    }) 
 }

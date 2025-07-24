@@ -1,13 +1,17 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import bgImage from "../assets/images/9.png";
+import Navbar from "../components/Navbar";
 
 export default function Home() {
   return (
+
+
+    <div>
+     <Navbar/>
+   
     <div
-      className="min-h-screen bg-cover bg-center flex flex-col"
-      
-    >
+      className="min-h-screen bg-cover bg-center flex flex-col">
       {/* Overlay */}
       <div className="bg-black bg-opacity-70 flex-1 flex flex-col justify-center items-center px-6 text-center">
         <h1 className="text-4xl md:text-6xl font-bold text-white mb-6 leading-tight">
@@ -47,5 +51,7 @@ export default function Home() {
         © {new Date().getFullYear()} Online Judge. Built with 💻 & Tailwind CSS.
       </footer>
     </div>
+
+     </div>
   );
 }

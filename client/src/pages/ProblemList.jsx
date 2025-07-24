@@ -2,16 +2,19 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 // import {problems} from '../assets/problelist'
 import { Link } from "react-router-dom";
+import { useContext } from "react";
+import { AppContext } from "../context/AppContext";
+import Navbar from "../components/Navbar";
 
 function ProblemList({ heading }) {
   const [selectedIndex, setSelectedIndex] = useState(-1);
   const [problems, setProblems] = useState([]);
 
+  const {backendUrl} = useContext(AppContext);
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(
-          "http://localhost:8000/problems"
+        const response = await axios.get(backendUrl+"/api/problem/all"
         );
         setProblems(response.data);
       } catch (error) {
@@ -26,6 +29,9 @@ function ProblemList({ heading }) {
   };
 
   return (
+
+    <div>
+      <Navbar/>
     <div className="w-full md:w-10/12 lg:w-9/12 mx-auto mt-10 bg-gray-100 p-6 rounded-xl shadow-inner">
       <h2 className="text-3xl font-bold text-gray-800 mb-6 border-b border-gray-300 pb-2">
         {heading || "Problem List"}
@@ -81,6 +87,7 @@ function ProblemList({ heading }) {
         </div>
         
       )}
+    </div>
     </div>
   );
 }
